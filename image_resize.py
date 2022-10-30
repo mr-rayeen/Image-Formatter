@@ -1,10 +1,16 @@
 #!/usr/bin/python3
-
+import os
 from PIL import Image
 
-image = "1Inazuma-Eleven-Wallpaper-inazuma-eleven-.jpg"
-im = Image.open(image)
-print(im.format,im.size)
-new_im = im.rotate(90).resize((128,128)).save("new-image.png")
-new_im = Image.open("new-image.png")
-print(new_im.format,new_im.size)
+dir_name = "images"
+image_path = "modify"
+size = (128,128)
+# os.mkdir(image_path)
+img_list = os.listdir(dir_name)
+for img in img_list:
+    full_img_name = os.path.join(dir_name,img)
+    im = Image.open(full_img_name)
+    new_im = im.rotate(270).resize(size)
+    new_im.convert("RGB").save(f"{image_path}/{img}",format="JPEG")
+    
+    
